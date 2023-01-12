@@ -1,0 +1,12 @@
+<div class="container">
+  <div  *ngFor="let hero of heroes">
+    <p>{{hero.localized_name}}</p>
+    <div>
+      <li *ngFor="let role of hero.roles">
+        {{role}}
+        <fa-icon [icon]="['fas','bolt']"></fa-icon>
+      </li>
+    </div>
+
+  </div>
+</div>

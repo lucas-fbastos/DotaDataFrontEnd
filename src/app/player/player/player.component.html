@@ -1,0 +1,69 @@
+<section id="hero" class="bg-neutral-800">
+  <div class="container flex flex-col
+        md:flex-row items-center px-6 mx-auto py-6
+        lg:space-y-0  ">
+
+    <div class="lg:w-1/6 w-2/4">
+      <img src="{{playerData.profile.avatarfull}}" class="rounded-full border-2" alt="">
+    </div>
+
+    <div class=" flex flex-row  mt-10 px-6 grow">
+      <div  class=" md:w-1/2 text-neutral-400">
+        <div class="flex flex-col ">
+          <div class="flex flex-row mx-auto lg:mx-0">
+            <h3 class=" flex-col lg:text-5xl text-4xl  ">{{playerData.profile.personaname}}</h3>
+          </div>
+          <div class="flex flex-row  mx-auto lg:mx-0 ">
+            <a href={{playerData.profile.profileurl}}><fa-icon [icon]="['fab','steam']" class=" text-blue-400 mr-2"></fa-icon>
+              Steam Profile
+            </a>
+          </div>
+        </div>
+        <div class="flex lg:flex-row flex-col mt-4 items-center">
+          <h6 class="text-lg">Estimated MMR: {{playerData.mmr_estimate.estimate}} </h6>
+          <img src={{medal}} alt="" class="lg:w-1/6 w-3/6">
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="flex flex-col lg:w-1/6 w-2/6 h-3/6 items-center mt-10">
+      <div class="flex flex-row mx-auto">
+
+        <img src="../../../assets/rank/rank1.webp" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+
+<div class="relative overflow-x-auto">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <tbody>
+          <tr *ngFor="let match of matches" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{match.hero_id}}
+              </th>
+              <td class="px-6 py-4">
+                  {{ match.player_slot <= 127 && "Radiant" || "Dire"}}
+              </td>
+              <td class="px-6 py-4">
+                {{ (match.player_slot <= 127 && match.radiant_win == true) && "Won" || "Lost"}}
+              </td>
+              <td class="px-6 py-4">
+                  {{ match.kills + "/" + match.deaths + "/" + match.assists}}
+              </td>
+              <td class="" >
+               <img  *ngIf="match.average_rank" src="{{ this.calculateAverageRank(match.average_rank) }}" alt=""  class="lg:w-1/6 w-3/6">
+            </td>
+          </tr>
+
+      </tbody>
+  </table>
+</div>
+
+</section>
+
+
+
