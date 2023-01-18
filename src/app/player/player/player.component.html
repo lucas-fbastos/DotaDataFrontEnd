@@ -1,10 +1,10 @@
-<section id="hero" class="bg-neutral-800">
+<section id="hero" class="bg-neutral-800" *ngIf="isReady">
   <div class="container flex flex-col
         md:flex-row items-center px-6 mx-auto py-6
         lg:space-y-0  ">
 
     <div class="lg:w-1/6 w-2/4">
-      <img src="{{playerData.profile.avatarfull}}" class="rounded-full border-2" alt="">
+      <img src="{{ playerData.profile.avatarfull }}" class="rounded-full border-2" alt="">
     </div>
 
     <div class=" flex flex-row  mt-10 px-6 grow">
@@ -38,12 +38,13 @@
 </section>
 <section>
 
-<div class="relative overflow-x-auto">
-  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+
+<section class="flex  bg-neutral-700 overflow-x-auto" *ngIf="isReady">
+  <table class="w-full  flex justify-center text-sm text-left text-gray-500 dark:text-gray-400" >
       <tbody>
-          <tr *ngFor="let match of matches" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <tr *ngFor="let match of matches" class="bg-white border-b dark:bg-neutral-700 dark:border-gray-900">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {{match.hero_id}}
+                <img src="http://api.opendota.com{{ match.hero.image }}" alt="" class=" lg:w-3/6 w-2/4 rounded border-1">
               </th>
               <td class="px-6 py-4">
                   {{ match.player_slot <= 127 && "Radiant" || "Dire"}}
@@ -61,8 +62,6 @@
 
       </tbody>
   </table>
-</div>
-
 </section>
 
 

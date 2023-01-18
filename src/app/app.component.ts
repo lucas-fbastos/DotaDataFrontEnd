@@ -1,3 +1,4 @@
+import { HeroesService } from './heroes/services/heroes.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 
 export class AppComponent implements OnInit{
   title = 'dota-trainer';
+  heroesService: HeroesService;
   constructor(private http: HttpClient){
-    this.http.get("http://localhost:8080/heroes").subscribe(response=>{
-      localStorage.setItem("heroes",response.toString())
+    this.heroesService = new HeroesService(http);
+    this.heroesService.getAllHeroes().subscribe(response=>{
+      localStorage.setItem("heroes",JSON.stringify(response))
     });
   }
 
