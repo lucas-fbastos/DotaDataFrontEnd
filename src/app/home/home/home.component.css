@@ -1,6 +1,15 @@
 .searchInput{
-  width: 55vw;
   height: 6vh;
   font-size: 2.5em;
+}
+@screen sm{
+  .searchInput{
+    width: 85vw;
+  }
+}
+@screen lg{
+  .searchInput{
+    width: 55vw;
+  }
 }
 
