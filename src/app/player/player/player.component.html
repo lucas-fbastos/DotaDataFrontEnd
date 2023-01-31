@@ -13,12 +13,14 @@
           <div class="flex flex-row mx-auto lg:mx-0">
             <h3 class=" flex-col lg:text-5xl text-4xl  ">{{playerData.profile.personaname}}</h3>
           </div>
+
           <div class="flex flex-row  mx-auto lg:mx-0 ">
             <a href={{playerData.profile.profileurl}}><fa-icon [icon]="['fab','steam']" class=" text-blue-400 mr-2"></fa-icon>
               Steam Profile
             </a>
           </div>
         </div>
+
         <div class="flex lg:flex-row flex-col mt-4 items-center">
           <h6 class="text-lg">Estimated MMR: {{playerData.mmr_estimate.estimate}} </h6>
           <img src={{medal}} alt="" class="lg:w-1/6 w-3/6">
@@ -27,36 +29,36 @@
       </div>
     </div>
 
-
     <div class="flex flex-col lg:w-1/6 w-2/6 h-3/6 items-center mt-10">
       <div class="flex flex-row mx-auto">
-
         <img src="../../../assets/rank/rank1.webp" alt="">
       </div>
     </div>
+
   </div>
 </section>
-<section>
 
-
-<section class="flex  bg-neutral-700 overflow-x-auto" *ngIf="isReady">
-  <table class="w-full  flex justify-center text-sm text-left text-gray-500 dark:text-gray-400" >
+<section class="  bg-neutral-700 overflow-x-auto" *ngIf="isReady">
+  <div class="flex justify-center text-2xl p-2 mt-10 text-neutral-400">
+    Recent Matches
+  </div>
+  <table class="w-full  flex justify-center mt-4 text-sm text-left text-gray-500 dark:text-gray-400" >
       <tbody>
           <tr *ngFor="let match of matches" class="bg-white border-b dark:bg-neutral-700 dark:border-gray-900">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <img src="http://api.opendota.com{{ match.hero.image }}" alt="" class=" lg:w-3/6 w-2/4 rounded border-1">
+              <th scope="row" class="py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <img src="http://api.opendota.com{{ match.hero.image }}" alt="" class=" mx-auto lg:w-3/6 w-2/4 rounded border-1">
               </th>
-              <td class="px-6 py-4">
-                  {{ match.player_slot <= 127 && "Radiant" || "Dire"}}
-              </td>
-              <td class="px-6 py-4">
-                {{ (match.player_slot <= 127 && match.radiant_win == true) && "Won" || "Lost"}}
+              <td class="px-6 py-4" [ngClass]="match.playerWon ? 'text-lime-500	' : 'text-rose-400	'">
+                {{ match.playerWon  && "Won" || "Lost"}}
               </td>
               <td class="px-6 py-4">
                   {{ match.kills + "/" + match.deaths + "/" + match.assists}}
               </td>
+              <td class="px-6 py-4">
+                  {{ match.faction }}
+              </td>
               <td class="" >
-               <img  *ngIf="match.average_rank" src="{{ this.calculateAverageRank(match.average_rank) }}" alt=""  class="lg:w-1/6 w-3/6">
+               <img  *ngIf="match.averageRank" src="{{ this.calculateAverageRank(match.averageRank) }}" alt=""  class="mx-auto lg:w-2/6 w-1/4">
             </td>
           </tr>
 
