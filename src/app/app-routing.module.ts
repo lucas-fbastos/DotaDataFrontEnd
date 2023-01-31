@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'', pathMatch:'full', redirectTo:'player'},
+  {path:'', pathMatch:'full', redirectTo:'home'},
   {
     path:'matches',
     loadChildren: () => import('./matches/matches.module').then(m => m.MatchesModule)
@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path:'player',
     loadChildren: () => import('./player/player.module').then(m => m.PlayerModule)
+  },
+  {
+    path:'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   }
 ];
 
