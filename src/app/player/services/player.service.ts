@@ -11,4 +11,8 @@ export class PlayerService {
   public getPlayerData(){
    return this.http.get('../../../assets/player.json');
   }
+
+  public getRecentMatches(){
+    return this.http.get("http://localhost:8080/matches/90413764/recent");
+  }
 }

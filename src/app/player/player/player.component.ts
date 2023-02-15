@@ -31,11 +31,10 @@ export class PlayerComponent implements OnInit {
     this.playerService.getPlayerData().subscribe(response =>{
       this.playerData = response;
       this.medal = this.calculateMedal(this.playerData.mmr_estimate.estimate);
-      this.http.get("http://localhost:8080/matches/90413764/recent").subscribe((response)=> {
+      this.playerService.getRecentMatches().subscribe((response)=> {
         this.matches = response;
         console.log(response);
         this.matches = this.matches.sort(this.compareMatchId)
-
         this.isReady = true;
       });
 
