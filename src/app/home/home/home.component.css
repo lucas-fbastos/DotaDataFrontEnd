@@ -7,10 +7,16 @@
   .searchInput{
     width: 85vw;
   }
+  .img-center{
+    width: 40vw;
+  }
 }
 @screen lg{
   .searchInput{
     width: 55vw;
+  }
+  .img-center{
+    width: 10vw;
   }
 }
 
@@ -23,6 +29,13 @@
 .img-center{display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5rem;
-  width: 10%;}
+  padding-top: 5rem;
+}
 
+.bg-wallpaper{
+  background-image: url("/assets/wpp.png");
+  background-repeat: no-repeat;
+
+  background-position: center;
+  margin-top: -6rem;
+}
