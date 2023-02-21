@@ -1,6 +1,7 @@
 .searchInput{
   height: 6vh;
   font-size: 2.5em;
+  @apply placeholder-gray-500 p-4 rounded-full text-center
 }
 @screen sm{
   .searchInput{
@@ -12,4 +13,16 @@
     width: 55vw;
   }
 }
+
+.card-menu{
+  cursor: pointer;
+  @apply p-4  bg-neutral-600 hover:bg-violet-700  mx-4 rounded-lg
+
+}
+
+.img-center{display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5rem;
+  width: 10%;}
 
