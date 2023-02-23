@@ -22,8 +22,11 @@
 
 .card-menu{
   cursor: pointer;
-  @apply p-4  bg-neutral-600 hover:bg-violet-700  mx-4 rounded-lg
+  @apply rounded-2xl bg-gradient-to-r from-pink-500  to-violet-500 p-1 max-h-min
+}
 
+.card-body{
+ @apply block rounded-xl bg-neutral-700 p-4 sm:p-6 lg:p-8 hover:bg-neutral-600
 }
 
 .img-center{display: block;
