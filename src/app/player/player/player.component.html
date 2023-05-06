@@ -50,6 +50,7 @@
   <table class="w-full  flex justify-center mt-4 text-sm text-left text-gray-500 text-center dark:text-gray-400" >
       <tbody>
           <tr *ngFor="let match of matches" class="matchtable bg-white border-b dark:bg-neutral-700 dark:border-gray-500">
+            <a href="/matches/detail/{{match.matchId}}">
               <th scope="row" class=" font-medium text-gray-900  dark:text-white">
                 <img src="http://api.opendota.com{{ match.hero.image }}" alt="" class="max-w-3/6 max-h-2/4 w-6/6 h-4/4 ">
               </th>
@@ -64,7 +65,8 @@
               </td>
               <td >
                <img  *ngIf="match.averageRank" src="{{ this.calculateAverageRank(match.averageRank) }}" alt=""  class=" max-h-2/4 w-6/6 h-4/4">
-            </td>
+              </td>
+            </a>
           </tr>
 
       </tbody>
