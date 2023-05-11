@@ -4,26 +4,26 @@
         lg:space-y-0  ">
 
     <div class="">
-      <img src="{{ playerData.profile.avatarfull }}" class=" border-2" alt="profile picture of the player">
+      <img src="{{ playerData.avatarImageFull }}" class=" border-2" alt="profile picture of the player">
     </div>
 
     <div class=" flex flex-row  mt-10 px-6 grow">
       <div  class=" md:w-1/2 text-neutral-400">
         <div class="flex flex-col ">
           <div class="flex flex-row mx-auto lg:mx-0">
-            <h3 class=" flex-col lg:text-5xl text-4xl  ">{{playerData.profile.personaname}}</h3>
+            <h3 class=" flex-col lg:text-5xl text-4xl  ">{{playerData.personaname}}</h3>
           </div>
 
           <div class="flex flex-row  mx-auto lg:mx-0 ">
-            <a href={{playerData.profile.profileurl}}><fa-icon [icon]="['fab','steam']" class=" text-blue-400 mr-2"></fa-icon>
+            <a href={{playerData.profileurl}}><fa-icon [icon]="['fab','steam']" class=" text-blue-400 mr-2"></fa-icon>
               Steam Profile
             </a>
           </div>
         </div>
 
         <div class="flex lg:flex-row flex-col mt-4 items-center">
-          <h6 class="text-lg">Estimated MMR: {{playerData.mmr_estimate.estimate}} </h6>
-          <img src={{medal}} alt="" class="flex flex-col lg:w-1/6 w-2/6 h-3/6 ">
+          <h6 class="text-lg">Estimated MMR: {{playerData.mmrEstimate}} </h6>
+          <img src={{estimatedMedal}} alt="" class="flex flex-col lg:w-1/6 w-2/6 h-3/6 " alt="estimated">
         </div>
 
         <div class="flex lg:flex-row flex-col mt-4 items-center">
@@ -36,7 +36,7 @@
 
     <div class="flex flex-col lg:w-1/6 w-2/6 h-3/6 items-center mt-10">
       <div class="flex flex-row mx-auto">
-        <img src="../../../assets/rank/rank1.webp" alt="">
+        <img src="{{realMedal}}" alt="">
       </div>
     </div>
 
@@ -64,7 +64,14 @@
                   {{ match.faction }}
               </td>
               <td >
-               <img  *ngIf="match.averageRank" src="{{ this.calculateAverageRank(match.averageRank) }}" alt=""  class=" max-h-2/4 w-6/6 h-4/4">
+                <ng-container *ngIf="match.averageRank!=0; then rank; else noRank"></ng-container>
+                
+                <ng-template #rank>
+                  <img src="{{ this.calculateRealRank(match.averageRank) }}" alt=""  class=" max-h-2/4 w-6/6 h-4/4">
+                </ng-template>
+                <ng-template #noRank>
+                  <img src="../../../assets/rank/rank1.webp" alt="">
+                </ng-template>
               </td>
             </a>
           </tr>

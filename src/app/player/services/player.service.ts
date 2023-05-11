@@ -8,11 +8,11 @@ export class PlayerService {
 
   constructor(private http: HttpClient) { }
 
-  public getPlayerData(){
-   return this.http.get('../../../assets/player.json');
+  public getPlayerData(id: number){
+   return this.http.get('http://localhost:8080/player/'+id);
   }
 
-  public getRecentMatches(){
-    return this.http.get("http://localhost:8080/matches/90413764/recent");
+  public getRecentMatches(id:number ){
+    return this.http.get("http://localhost:8080/matches/"+ id +"/recent");
   }
 }
