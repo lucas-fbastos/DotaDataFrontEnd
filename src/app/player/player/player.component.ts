@@ -55,7 +55,7 @@ export class PlayerComponent implements OnInit {
   }
 
   public calculateRealRank(rank: number){
-    if(rank!=undefined && rank!=null){
+    if(rank!=undefined && rank!=null && rank!=0){
       const strRank = rank.toString().split('');
       const medal: number = +strRank[0];
       const stars:number = +strRank[1];
@@ -63,7 +63,7 @@ export class PlayerComponent implements OnInit {
       mmr = mmr + stars * 140 - 280;
       return this.calculateMedal(mmr);
     }
-    return "";
+    return  "../../../assets/rank/rank1.webp";
   }
 
 
