@@ -1,1 +1,22 @@
-<p>matches-detail works!</p>
+<section id="hero" class="bg-neutral-800" *ngIf="isReady">
+    <section class="  bg-neutral-700 overflow-x-auto" *ngIf="isReady">
+        <div class="flex justify-center text-2xl p-2 mt-10 text-neutral-400">
+          Recent Matches
+        </div>
+        <table class="w-full  flex justify-center mt-4 text-sm text-left text-gray-500 text-center dark:text-gray-400" >
+            <tbody>
+                <tr *ngFor="let player of matchData.players" class="matchtable bg-white border-b dark:bg-neutral-700 dark:border-gray-500">
+                    <th scope="row" class=" font-medium text-gray-900  dark:text-white">
+                      <img src="http://api.opendota.com{{ player.hero.image }}" alt="" class="max-w-3/6 max-h-2/4 w-6/6 h-4/4 ">
+                    </th>
+                    <td [ngClass]="player.won ? 'text-lime-500	' : 'text-rose-400	'">
+                      {{ player.won  && "Won" || "Lost"}}
+                    </td>
+                    <td>
+                        {{ player.kills + "/" + player.deaths + "/" + player.assists}}
+                    </td>
+                </tr>
+      
+            </tbody>
+        </table>
+</section>
