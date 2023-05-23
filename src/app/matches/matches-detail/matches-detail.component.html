@@ -1,22 +1,58 @@
 <section id="hero" class="bg-neutral-800" *ngIf="isReady">
-    <section class="  bg-neutral-700 overflow-x-auto" *ngIf="isReady">
+    <section class=" bg-neutral-700 overflow-x-auto" *ngIf="isReady">
         <div class="flex justify-center text-2xl p-2 mt-10 text-neutral-400">
           Recent Matches
         </div>
-        <table class="w-full  flex justify-center mt-4 text-sm text-left text-gray-500 text-center dark:text-gray-400" >
-            <tbody>
-                <tr *ngFor="let player of matchData.players" class="matchtable bg-white border-b dark:bg-neutral-700 dark:border-gray-500">
-                    <th scope="row" class=" font-medium text-gray-900  dark:text-white">
-                      <img src="http://api.opendota.com{{ player.hero.image }}" alt="" class="max-w-3/6 max-h-2/4 w-6/6 h-4/4 ">
-                    </th>
-                    <td [ngClass]="player.won ? 'text-lime-500	' : 'text-rose-400	'">
-                      {{ player.won  && "Won" || "Lost"}}
-                    </td>
-                    <td>
-                        {{ player.kills + "/" + player.deaths + "/" + player.assists}}
-                    </td>
-                </tr>
-      
-            </tbody>
-        </table>
+        <table class=" mx-auto mt-4 text-sm text-gray-500 text-center dark:text-gray-400 border-2  border-green-500 p-48" >
+          <tbody>
+              <tr *ngFor="let player of matchData.radiantTeam" class="matchtable bg-white dark:bg-neutral-700 dark:border-gray-500">
+                <th scope="row" class=" font-medium text-gray-900  dark:text-white px-6">
+                  <img src="http://api.opendota.com{{ player.hero.image }}" alt="" class="object-scale-down h-12 w-24 ">
+                </th>
+                <td>
+                  <div class="rounded-full p-1 border-2 border-blue-400">
+                    {{player.level}} 
+                  </div>
+                </td>
+                <td class="px-6">
+                  {{ player.personaName ? player.personaName : 'Unknown'  }}
+                </td>
+                <td class="px-6">
+                    {{ player.kills + "/" + player.deaths + "/" + player.assists}}
+                </td>
+                <td *ngFor="let item of player.items ">
+                  <div class="mt-2">
+                    <img *ngIf="item" src="http://api.opendota.com{{ item?.image }}" class="w-12">
+                  </div>
+                </td>
+              </tr>
+  
+          </tbody>
+      </table>
+
+      <table class=" mx-auto mt-4 text-sm text-left text-gray-500 text-center dark:text-gray-400 border-2  border-red-500 p-48" >
+        <tbody>
+          <tr *ngFor="let player of matchData.direTeam" class="matchtable bg-white border-b dark:bg-neutral-700 dark:border-gray-500">
+            <th scope="row" class=" font-medium text-gray-900  dark:text-white px-6">
+              <img src="http://api.opendota.com{{ player.hero.image }}" alt="" class="object-scale-down h-12 w-24 ">
+            </th>
+            <td>
+              <div class="rounded-full p-1 border-2 border-blue-400">
+                {{player.level}} 
+              </div>
+            </td>
+            <td class="px-6">
+              {{ player.personaName ? player.personaName : 'Unknown'  }} 
+            </td>
+            <td class="px-6">
+              {{ player.kills + "/" + player.deaths + "/" + player.assists}} 
+            </td>
+            <td *ngFor="let item of player.items ">
+              <div class="mt-2">
+                <img *ngIf="item" src="http://api.opendota.com{{ item?.image }}" class="w-12">
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 </section>

@@ -23,6 +23,7 @@ export class MatchesDetailComponent implements OnInit {
     this.matchesService.getMatchesDetails(this.id).subscribe(response => {
       this.matchData = response;
       this.isReady = true;
+      console.log(response);
     });
     console.log(this.matchData);
   }
