@@ -1,58 +1,95 @@
-<section id="hero" class="bg-neutral-800" *ngIf="isReady">
-    <section class=" bg-neutral-700 overflow-x-auto" *ngIf="isReady">
-        <div class="flex justify-center text-2xl p-2 mt-10 text-neutral-400">
-          Recent Matches
-        </div>
-        <table class=" mx-auto mt-4 text-sm text-gray-500 text-center dark:text-gray-400 border-2  border-green-500 p-48" >
-          <tbody>
-              <tr *ngFor="let player of matchData.radiantTeam" class="matchtable bg-white dark:bg-neutral-700 dark:border-gray-500">
-                <th scope="row" class=" font-medium text-gray-900  dark:text-white px-6">
-                  <img src="http://api.opendota.com{{ player.hero.image }}" alt="" class="object-scale-down h-12 w-24 ">
-                </th>
-                <td>
-                  <div class="rounded-full p-1 border-2 border-blue-400">
-                    {{player.level}} 
-                  </div>
-                </td>
-                <td class="px-6">
-                  {{ player.personaName ? player.personaName : 'Unknown'  }}
-                </td>
-                <td class="px-6">
+<section class="overflow-x-auto  bg-gray-800" *ngIf="isReady">
+      <h3 class="flex justify-center text-2xl p-2 mt-10 text-neutral-400">
+        Recent Matches
+      </h3>
+      <div class="md:flex md:justify-center md:space-x-10 sm:block ">
+      <div class="flex items-center justify-center sm:my-4">
+        <div class="col-span-12 border border-4 p-2 rounded border-green-400">
+          <h4 class="flex justify-center text-xl text-neutral-300">
+            Radiant Team
+          </h4>
+          <div class="overflow-auto lg:overflow-visible ">
+            <table class="table text-gray-400 border-separate space-y-6 text-sm">
+              <thead class="bg-gray-700 text-gray-500">
+                <tr>
+                  <th class="p-3">Player</th>
+                  <th class="p-3 text-left">Level</th>
+                  <th class="p-3 text-left">Score</th>
+                  <th class="p-3 text-center" colspan="6">Items</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let player of matchData.radiantTeam" class="bg-gray-600">
+                  <td class="p-3">
+                    <div class="flex align-items-center">
+                      <img class="rounded-full h-16 w-16  object-cover" src="http://api.opendota.com{{ player.hero.image }}" alt="unsplash image">
+                      <div class="m-3">
+                        <div class="  "> {{ player.personaName ? player.personaName : 'Unknown'  }}</div>
+                        <div class="text-gray-500">{{player.hero.localizedName}}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="p-3">
+                    <div class="rounded-full text-center border-2 border-blue-400">
+                      {{player.level}} 
+                    </div>
+                  </td>
+                  <td class="p-3 font-bold">
                     {{ player.kills + "/" + player.deaths + "/" + player.assists}}
-                </td>
-                <td *ngFor="let item of player.items ">
-                  <div class="mt-2">
-                    <img *ngIf="item" src="http://api.opendota.com{{ item?.image }}" class="w-12">
-                  </div>
-                </td>
-              </tr>
-  
-          </tbody>
-      </table>
-
-      <table class=" mx-auto mt-4 text-sm text-left text-gray-500 text-center dark:text-gray-400 border-2  border-red-500 p-48" >
-        <tbody>
-          <tr *ngFor="let player of matchData.direTeam" class="matchtable bg-white border-b dark:bg-neutral-700 dark:border-gray-500">
-            <th scope="row" class=" font-medium text-gray-900  dark:text-white px-6">
-              <img src="http://api.opendota.com{{ player.hero.image }}" alt="" class="object-scale-down h-12 w-24 ">
-            </th>
-            <td>
-              <div class="rounded-full p-1 border-2 border-blue-400">
-                {{player.level}} 
-              </div>
-            </td>
-            <td class="px-6">
-              {{ player.personaName ? player.personaName : 'Unknown'  }} 
-            </td>
-            <td class="px-6">
-              {{ player.kills + "/" + player.deaths + "/" + player.assists}} 
-            </td>
-            <td *ngFor="let item of player.items ">
-              <div class="mt-2">
-                <img *ngIf="item" src="http://api.opendota.com{{ item?.image }}" class="w-12">
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                  </td>
+                  <td class="sm:inline-flex mt-4 " *ngFor="let item of player.items">
+                    <img *ngIf="item" src="http://api.opendota.com{{ item?.image }}" class=" h-12 w-12 object-cover">
+                  </td>  
+                  <td class="p-1 mr-1"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-center">
+        <div class="col-span-12 border border-4 p-2 rounded border-red-400">
+          <h4 class="flex text-xl justify-center text-neutral-300">
+            Dire Team
+          </h4>
+          <div class="overflow-auto lg:overflow-visible ">
+            <table class="table text-gray-400 border-separate space-y-6 text-sm">
+              <thead class="bg-gray-700 text-gray-500">
+                <tr>
+                  <th class="p-3">Player</th>
+                  <th class="p-3 text-left">Level</th>
+                  <th class="p-3 text-left">Score</th>
+                  <th class="p-3 text-center" colspan="6">Items</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let player of matchData.direTeam" class="bg-gray-600">
+                  <td class="p-3">
+                    <div class="flex align-items-center">
+                      <img class="rounded-full h-16 w-16  object-cover" src="http://api.opendota.com{{ player.hero.image }}" alt="unsplash image">
+                      <div class="ml-3">
+                        <div class="m-2"> {{ player.personaName ? player.personaName : 'Unknown'  }}</div>
+                        <div class="text-gray-500">{{player.hero.localizedName}}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="p-3">
+                    <div class="rounded-full text-center border-2 border-blue-400">
+                      {{player.level}} 
+                    </div>
+                  </td>
+                  <td class="p-3 font-bold">
+                    {{ player.kills + "/" + player.deaths + "/" + player.assists}}
+                  </td>
+                  <td class="sm:inline-flex mt-4" *ngFor="let item of player.items" >
+                    <img *ngIf="item" src="http://api.opendota.com{{ item?.image }}" class=" h-12 w-12 object-cover">
+                  </td>  
+                  <td class="p-1 mr-1"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 </section>
