@@ -1,4 +1,4 @@
-<section id="hero" class="bg-neutral-800" *ngIf="isReady">
+<section id="hero" class="bg-gray-900" *ngIf="isReady">
   <div class="container flex flex-col
         md:flex-row items-center px-6 mx-auto py-6
         lg:space-y-0  ">
@@ -44,41 +44,49 @@
   </div>
 </section>
 
-<section class="  bg-neutral-700 overflow-x-auto" *ngIf="isReady">
+<section class="  overflow-x-auto  bg-gray-800" *ngIf="isReady">
   <div class="flex justify-center text-2xl p-2 mt-10 text-neutral-400">
     Recent Matches
   </div>
-  <table class="w-full  flex justify-center mt-4 text-sm text-left text-gray-500 text-center dark:text-gray-400" >
+  <div class="md:flex md:justify-center md:space-x-10 sm:block ">
+    <table class="table text-gray-400 border-separate space-y-6 text-sm">
+      <thead>
+          <th>Hero</th>
+          <th>Result</th>
+          <th>Score</th>
+          <th>Team</th>
+          <th>Rank</th>
+      </thead>
       <tbody>
-          <tr *ngFor="let match of matches" class="matchtable bg-white border-b dark:bg-neutral-700 dark:border-gray-500">
-            <a href="/matches/detail/{{match.matchId}}">
-              <th scope="row" class=" font-medium text-gray-900  dark:text-white">
-                <img src="http://api.opendota.com{{ match.hero.image }}" alt="" class="max-w-3/6 max-h-2/4 w-6/6 h-4/4 ">
-              </th>
-              <td [ngClass]="match.playerWon ? 'text-lime-500	' : 'text-rose-400	'">
-                {{ match.playerWon  && "Won" || "Lost"}}
-              </td>
-              <td>
-                  {{ match.kills + "/" + match.deaths + "/" + match.assists}}
-              </td>
-              <td  >
-                  {{ match.faction }}
-              </td>
-              <td >
-                <ng-container *ngIf="match.averageRank!=0; then rank; else noRank"></ng-container>
-                
-                <ng-template #rank>
-                  <img src="{{ this.calculateRealRank(match.averageRank) }}" alt=""  class=" max-h-2/4 w-6/6 h-4/4">
-                </ng-template>
-                <ng-template #noRank>
-                  <img src="../../../assets/rank/rank1.webp" alt="">
-                </ng-template>
-              </td>
-            </a>
-          </tr>
-
-      </tbody>
-  </table>
+            <tr *ngFor="let match of matches" class="bg-gray-600">
+              <a href="/matches/detail/{{match.matchId}}">
+                <td  class=" font-medium text-gray-900  dark:text-white">
+                  <img src="http://api.opendota.com{{ match.hero.image }}" alt="" class="rounded-full h-16 w-16  object-cover">
+                </td>
+                <td [ngClass]="match.playerWon ? 'text-lime-500	' : 'text-rose-400	'">
+                  {{ match.playerWon  && "Won" || "Lost"}}
+                </td>
+                <td>
+                    {{ match.kills + "/" + match.deaths + "/" + match.assists}}
+                </td>
+                <td  >
+                    {{ match.faction }}
+                </td>
+                <td >
+                  <ng-container *ngIf="match.averageRank!=0; then rank; else noRank"></ng-container>
+                  
+                  <ng-template #rank>
+                    <img src="{{ this.calculateRealRank(match.averageRank) }}" alt=""  class="rounded-full h-16 w-16  object-cover">
+                  </ng-template>
+                  <ng-template #noRank>
+                    <img src="../../../assets/rank/rank1.webp" alt="" class="rounded-full h-16 w-16  object-cover">
+                  </ng-template>
+                </td>
+              </a>
+            </tr>
+        </tbody>
+    </table>
+  </div>
 </section>
 
 
