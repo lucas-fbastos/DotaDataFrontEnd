@@ -10,10 +10,10 @@
     <div class=" flex flex-row  mt-10 px-6 grow">
       <div  class=" md:w-1/2 text-neutral-400">
         <div class="flex flex-col ">
-          <div class="flex flex-row mx-auto lg:mx-0">
+          <div class="flex flex-row mx-auto lg:mx-0 mt-10">
             <h3 class=" flex-col lg:text-5xl text-4xl  ">{{playerData.personaName}}</h3>
           </div>
-          <div class="flex flex-row  mx-auto lg:mx-0 ">
+          <div class="flex flex-row  mx-auto lg:mx-0 text-xl mt-5 ">
             <a href={{playerData.profileurl}}><fa-icon [icon]="['fab','steam']" class=" text-blue-400 mr-2"></fa-icon>
               Steam Profile
             </a>
@@ -21,12 +21,7 @@
         </div>
         <div class="flex lg:flex-row flex-col mt-4 items-center">
           <h6 class="text-lg">Estimated MMR: {{playerData.mmrEstimate}} </h6>
-          <img src={{estimatedMedal}} alt="" class="flex flex-col lg:w-1/6 w-2/6 h-3/6 " alt="estimated">
-        </div>
-
-        <div class="flex lg:flex-row flex-col mt-4 items-center">
-          <h6 class="text-lg">Won: <span class="text-lime-500">588</span></h6>
-          <h6 class="text-lg lg:ml-2">Lost: <span class="text-rose-400">621</span></h6>
+          <img src={{estimatedMedal}} alt="" class="h-16 w-16 object-cover " alt="estimated">
         </div>
 
       </div>
@@ -35,17 +30,18 @@
     <div class="flex flex-col lg:w-1/6 w-2/6 h-3/6 items-center mt-10">
       <div class="flex flex-row mx-auto">
         <img src="{{realMedal}}" alt="">
-        
       </div>
     </div>
 
   </div>
 </section>
 
-<section class="  overflow-x-auto  bg-gray-800" *ngIf="isReady">
-  <div class="flex justify-center text-2xl p-2 mt-10 text-neutral-400">
-    Recent Matches
-  </div>
+<div class="flex mx-auto justify-center space-x-6 mt-12">
+  <button  class="text-neutral-200 hover:text-violet-400 text-xl hover:border-b-2">Summary</button>
+  <button  class="text-neutral-200 hover:text-violet-400 text-xl hover:border-b-2">Performance</button>
+  <button  class="text-neutral-200 hover:text-violet-400 text-xl hover:border-b-2">Compare</button>
+</div>
+<section class="  overflow-x-auto " *ngIf="isReady">
   <div class="flex items-center justify-center sm:my-4 ">
     <table class="table text-gray-400 border-separate space-y-6 text-lg">
       <thead class="bg-gray-700 text-gray-500">
