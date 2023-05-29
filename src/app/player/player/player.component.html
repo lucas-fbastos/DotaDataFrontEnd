@@ -13,14 +13,12 @@
           <div class="flex flex-row mx-auto lg:mx-0">
             <h3 class=" flex-col lg:text-5xl text-4xl  ">{{playerData.personaName}}</h3>
           </div>
-
           <div class="flex flex-row  mx-auto lg:mx-0 ">
             <a href={{playerData.profileurl}}><fa-icon [icon]="['fab','steam']" class=" text-blue-400 mr-2"></fa-icon>
               Steam Profile
             </a>
           </div>
         </div>
-
         <div class="flex lg:flex-row flex-col mt-4 items-center">
           <h6 class="text-lg">Estimated MMR: {{playerData.mmrEstimate}} </h6>
           <img src={{estimatedMedal}} alt="" class="flex flex-col lg:w-1/6 w-2/6 h-3/6 " alt="estimated">
@@ -48,43 +46,50 @@
   <div class="flex justify-center text-2xl p-2 mt-10 text-neutral-400">
     Recent Matches
   </div>
-  <div class="md:flex md:justify-center md:space-x-10 sm:block ">
-    <table class="table text-gray-400 border-separate space-y-6 text-sm">
-      <thead>
-          <th>Hero</th>
-          <th>Result</th>
-          <th>Score</th>
-          <th>Team</th>
-          <th>Rank</th>
+  <div class="flex items-center justify-center sm:my-4 ">
+    <table class="table text-gray-400 border-separate space-y-6 text-lg">
+      <thead class="bg-gray-700 text-gray-500">
+        <tr>
+          <th class="p-3">Hero</th>
+          <th class="p-3 text-left">Result</th>
+          <th class="p-3 text-left">Score</th>
+          <th class="p-3 text-left">Team</th>
+          <th class="p-3 text-left">Rank</th>
+        </tr>
       </thead>
       <tbody>
-            <tr *ngFor="let match of matches" class="bg-gray-600">
-              <a href="/matches/detail/{{match.matchId}}">
-                <td  class=" font-medium text-gray-900  dark:text-white">
-                  <img src="http://api.opendota.com{{ match.hero.image }}" alt="" class="rounded-full h-16 w-16  object-cover">
-                </td>
-                <td [ngClass]="match.playerWon ? 'text-lime-500	' : 'text-rose-400	'">
-                  {{ match.playerWon  && "Won" || "Lost"}}
-                </td>
-                <td>
-                    {{ match.kills + "/" + match.deaths + "/" + match.assists}}
-                </td>
-                <td  >
-                    {{ match.faction }}
-                </td>
-                <td >
-                  <ng-container *ngIf="match.averageRank!=0; then rank; else noRank"></ng-container>
-                  
-                  <ng-template #rank>
-                    <img src="{{ this.calculateRealRank(match.averageRank) }}" alt=""  class="rounded-full h-16 w-16  object-cover">
-                  </ng-template>
-                  <ng-template #noRank>
-                    <img src="../../../assets/rank/rank1.webp" alt="" class="rounded-full h-16 w-16  object-cover">
-                  </ng-template>
-                </td>
-              </a>
+        <ng-container *ngFor="let match of matches">
+            <tr class="bg-gray-600" (click)="redirectToPage(match)">
+              <td class="p-3">
+                <div class="flex items-center justify-center flex-col	">
+                  <img class="rounded-full h-16 w-16  object-cover"
+                    src="http://api.opendota.com{{ match.hero.image }}" alt="unsplash image">
+                  <p class="text-gray-500">{{match.hero.localizedName}}</p>
+                </div>
+              </td>
+              <td class="p-3"  [ngClass]="match.playerWon ? 'text-lime-500	' : 'text-rose-400	'">
+                {{ match.playerWon  && "Won" || "Lost"}}
+              </td>
+              <td class="p-3 font-bold">
+                {{ match.kills + "/" + match.deaths + "/" + match.assists}}
+              </td>
+              <td  class="p-3 font-bold">
+                {{ match.faction }}
+              </td>
+              <td class="p-3 font-bold p-1 mr-1">
+                <ng-container *ngIf="match.averageRank!=0; then rank; else noRank"></ng-container>
+
+                <ng-template #rank>
+                  <img src="{{ this.calculateRealRank(match.averageRank) }}" alt=""  class="rounded-full h-16 w-16  object-cover">
+                </ng-template>
+                <ng-template #noRank>
+                  <img src="../../../assets/rank/rank1.webp" alt="" class="rounded-full h-16 w-16  object-cover">
+                </ng-template>
+              </td>
             </tr>
-        </tbody>
+
+        </ng-container>
+      </tbody>
     </table>
   </div>
 </section>

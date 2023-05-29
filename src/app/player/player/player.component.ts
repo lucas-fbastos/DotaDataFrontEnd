@@ -4,7 +4,9 @@ import { faSteam,fab } from '@fortawesome/free-brands-svg-icons';
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -22,7 +24,8 @@ export class PlayerComponent implements OnInit {
   public playerService: PlayerService;
   public isReady:boolean= false;
 
-  constructor(private http: HttpClient, library: FaIconLibrary, private route: ActivatedRoute) {
+
+  constructor(private http: HttpClient, library: FaIconLibrary, private route: ActivatedRoute, private router: Router) {
     library.addIconPacks(fab)
     library.addIcons(faSteam);
     this.playerService = new PlayerService(http);
@@ -66,6 +69,10 @@ export class PlayerComponent implements OnInit {
     return  "../../../assets/rank/rank1.webp";
   }
 
+  public redirectToPage(match: any) {
+  
+    this.router.navigate(["/matches/detail/"+match.matchId]); // Replace '/other-page' with the desired route/path
+  }
 
   public calculateMedal(mmr:number) {
     let medal = mmr/140;
